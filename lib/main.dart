@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tasks/screens/todo_home.dart';
 
-
 void main() {
   runApp(
     const TodoApp(),

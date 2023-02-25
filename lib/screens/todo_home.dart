@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tasks/utils/classes.dart';
-
+import 'package:tasks/utils/constants.dart';
 
 class TodoHome extends StatefulWidget {
   const TodoHome({Key? key}) : super(key: key);
@@ -14,7 +14,7 @@ class _TodoHomeState extends State<TodoHome> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: DefaultTabController(
-        length: 3,
+        length: 4,
         child: Scaffold(
           backgroundColor: Colors.white,
           body: Column(
@@ -25,70 +25,43 @@ class _TodoHomeState extends State<TodoHome> {
                 height: 45,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(25),
-                  //color: Colors.grey[100],
                 ),
-                child: TabBar(
-                  indicator: BoxDecoration(
-                    borderRadius: BorderRadius.circular(25),
-                    color: Colors.grey[100],
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: TabBar(
+                    physics: const BouncingScrollPhysics(),
+                    isScrollable: true,
+                    indicator: BoxDecoration(
+                      borderRadius: BorderRadius.circular(25),
+                      color: kPrimaryColour,
+                    ),
+                    labelColor: Colors.black,
+                    unselectedLabelColor: Colors.black54,
+                    tabs: const [
+                      TasksTabs(tabName: "All Tasks"),
+                      TasksTabs(tabName: "Today"),
+                      TasksTabs(tabName: "Upcoming"),
+                      TasksTabs(tabName: "Completed"),
+                    ],
                   ),
-                  labelColor: Colors.black,
-                  unselectedLabelColor:Colors.black54,
-                  tabs: const [
-                    SizedBox(
-                      height: 30,
-                      child: Center(
-                        child: Text(
-                          "Today",
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                            //color: Colors.black,
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 30,
-                      child: Center(
-                        child: Text(
-                          "Upcoming",
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                            //color: Colors.black,
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 30,
-                      child: Center(
-                        child: Text(
-                          "Completed",
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                            //color: Colors.black,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
                 ),
               ),
               const Expanded(
-                child:  TabBarView(
+                child: TabBarView(
+                  physics: BouncingScrollPhysics(),
                   children: [
+                    AllTasksBody(),
                     Center(
                       child: Text(
                         "Today",
                       ),
-                    ),Center(
+                    ),
+                    Center(
                       child: Text(
                         "Upcoming",
                       ),
-                    ),Center(
+                    ),
+                    Center(
                       child: Text(
                         "Completed",
                       ),
@@ -98,7 +71,6 @@ class _TodoHomeState extends State<TodoHome> {
               ),
             ],
           ),
-
         ),
       ),
     );

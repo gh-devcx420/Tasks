@@ -1,6 +1,5 @@
-List taskList = [
-  ["Abc", true],
-  ["Def", false],
-  ["Ghi", false],
-  ["Jkl", false],
+List<String> taskList = [
+  "Call a Friend",
+  "Anna's Birthday Party",
 ];
+
